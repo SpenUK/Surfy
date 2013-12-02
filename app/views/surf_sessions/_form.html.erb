@@ -1,0 +1,9 @@
+	<%= form_for(@surf_session) do |f| %>
+		<div class="field">
+			<%= f.label :location %>
+			<%= f.text_field :location %>
+		</div>
+		<div class="action">
+			<%= f.submit %>
+		</div>
+	<% end %>

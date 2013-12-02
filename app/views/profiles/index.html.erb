@@ -1,0 +1,13 @@
+<div class="container">
+
+	<% @users.each do |user| %>
+
+		<div class="panel"> <%= link_to user.full_name, profile_path(user.id) %> </div>
+
+	<% end %>
+
+		<div class="panel container">
+			<%= debug params %>
+		</div>
+
+</div>

@@ -1,0 +1,235 @@
+<div class="container">
+
+	<div class="profile_panel">
+
+		<img class="arrow" src="/images/down_arrow.png">
+		<img class="arrow" src="/images/up_arrow.png" style="display: none;">
+
+		<div class="profile_summary">
+			<%= (image_tag (@user.gravitar_url), :class => "profile_gravitar") %><!--
+
+		--><div class="quick_bio">
+					<h2>
+						<%= @user.full_name %>
+						<% if @user.pro %> <span class="pro">Pro</span><% end %>
+					</h2>
+					<p><%= @user.tagline %></p>
+			</div>
+
+		</div>
+		<div class="full_profile">
+			This is the content for the full profile<br>
+			This is the content for the full profile<br>
+			This is the content for the full profile<br>
+			This is the content for the full profile<br>
+			This is the content for the full profile<br>
+		</div>
+	</div>
+
+	<div class="sessions_container">
+
+		<% @user.surf_sessions.each do |session| %>
+
+			<div class="session_panel" data-session="<%= session.id %>">
+
+				<div class="session_summary">
+
+					<img class="arrow" src="/images/down_arrow.png">
+				<img class="arrow" src="/images/up_arrow.png" style="display: none;">
+
+					<h3 class="title"><%= session.surf_spot.location %> <span class="date"><%= session.date %></span></h3>
+					<p>Session length: X  Fastest Wave: X  Longest Ride: X </p>
+				</div>
+				<div class="full_session">
+					<div class="session_data">
+
+					<div class="map_holder"><%= (image_tag ("/images/" + session.surf_spot.image_url), :class => "map_img") %>
+
+						<div class="marker_on"></div>
+						<div class="marker_on"></div>
+						<div class="marker_on"></div>
+						<div class="marker_on"></div>
+						<div class="marker_on"></div>
+
+
+
+
+					</div>
+					<div class="waves_holder">
+
+						<div class="wave_detail"><span class="date">15:04:23 </span>- Length: 14.3s Speed: 9km/h</div>
+
+						<div class="wave_detail"><span class="date">15:04:23 </span>- Length: 14.3s Speed: 9km/h</div>
+
+						<div class="wave_detail"><span class="date">15:04:23 </span>- Length: 14.3s Speed: 9km/h</div>
+
+						<div class="wave_detail"><span class="date">15:04:23 </span>- Length: 14.3s Speed: 9km/h</div>
+
+						<div class="wave_detail"><span class="date">15:04:23 </span>- Length: 14.3s Speed: 9km/h</div>
+
+						<div class="wave_detail"><span class="date">15:04:23 </span>- Length: 14.3s Speed: 9km/h</div>
+
+						<div class="wave_detail"><span class="date">15:04:23 </span>- Length: 14.3s Speed: 9km/h</div>
+
+						<div class="wave_detail"><span class="date">15:04:23 </span>- Length: 14.3s Speed: 9km/h</div>
+
+						<div class="wave_detail"><span class="date">15:04:23 </span>- Length: 14.3s Speed: 9km/h</div>
+
+						<div class="wave_detail"><span class="date">15:04:23 </span>- Length: 14.3s Speed: 9km/h</div>
+						
+
+
+					</div>
+
+					</div>
+				</div>
+			</div>
+
+		<% end %>
+
+	</div>
+
+	<div class="container">
+		<a id="clicky" href="#"><div class='panel'>Add New</div></a>
+	</div>
+
+</div>
+
+<!---  ==============  -->
+
+<script type="text/javascript">
+
+	var updateTime = <%= @update_time.to_i %>;
+
+	var user = <%= @user.id %>;
+
+	$('.full_profile').height(200);
+
+	$('#clicky').on("click", function(event){
+			
+			posty();
+			return false;
+
+		}
+	);
+
+	$('.profile_panel').on("click", function(event){
+			
+			showMore('.full_profile');
+
+			var targetImg = $(this).children('.arrow');
+
+			targetImg.toggle();
+
+		});
+
+	$('.session_summary').on("click", function(event){
+			
+		var target = $(this).parent().children('.full_session');
+		var targetImg = $(this).children('.arrow');
+
+		targetImg.toggle();
+
+
+			showMore(target);
+			return false;
+
+		}
+	);
+
+	function posty(){
+		
+		function randomSpot(){
+			var locations = ['Praa Sands','Polzeath','Harlyn','Porthleven','Perranporth','Crantock','South Fistral','The Cribbar','North Fistral','Lusty Glaze','Mawgan Porth']
+
+			var random_index = Math.floor(Math.random() * locations.length);
+
+			return locations[random_index];
+		}
+
+		$.ajax({
+			url: "/surf_sessions", 
+			type: "POST",
+			datatype : 'text json',
+			data:{ submit: true, 
+						 surf_session: {location: 'beef' },
+						 commit: 'Create Surf session',
+						 action: 'create',
+						 controller: 'surf_sessions' },
+			success: function(response){
+			}
+
+		});
+	}
+
+	function listSessionsInView(){
+
+		var list = [];
+
+		$('.sessions_container')
+								.find('.session_panel')
+								.each( 
+									function(){ list.push($(this).data("session"))}
+										);	
+
+		return list;
+	}
+
+	function updateSessions(){
+
+		$.ajax({
+			url: "/surf_sessions/update_sessions_in_display", 
+			type: "POST",
+			datatype : 'json',
+			data:{ 
+						 surf_session: { profile_user: user, time_stamp: updateTime },
+						 commit: 'Update Surf sessions',
+						 action: 'update_sessions_in_display',
+						 controller: 'surf_sessions' },
+			success: function(response){
+
+				if (response.sessions.length > 0) {
+
+					var i;
+					for (i = 0; i < response.sessions.length; ++i) {
+						var sesh = response.sessions[i];
+
+						var sessionDate = new Date(sesh.created_at);
+						var formattedDate = sessionDate.getDate()+"/"+(sessionDate.getMonth()+1)+"/"+sessionDate.getFullYear()
+
+						var newHTML = "<div class='session_panel' data-session=" + sesh.id +">" +
+													"<h3 class='title'>"+ sesh.location +" <span class='date'>"+
+													 formattedDate + "</span></h3>" +
+													"<p>Session length: X  Fastest Wave: X  Longest Ride: X </p></div>";
+
+
+						$('.sessions_container').append(newHTML);
+
+
+					}
+				}	
+
+				updateTime = response.timeNow
+
+			}
+		});
+	}
+
+	function showMore(target) {
+
+
+	$(target).toggle(200);
+
+	
+	}
+
+	setInterval(function(){updateSessions();}, 15000);
+
+</script>
+
+
+
+
+
+
+

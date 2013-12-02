@@ -1,0 +1,397 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+/* Fix browser shit */
+ * { margin: 0px; padding: 0px; font-family: "montserrat", sans-serif;}
+html { height: 100%; 
+			background: #222833 url('/images/underwater.png') no-repeat top center;
+			background-size: cover; 
+			color: rgba(245,2505,255,1);
+}
+body { height: 100%; 
+	/*background: #222833;*/
+}
+a {text-decoration: none;}
+
+div {display: block;}
+
+ul { list-style: none; }
+
+/* uncategorised */
+
+.arrow {
+	position: absolute;
+	right: 20px;
+	bottom: 20px;
+	opacity: 0.1;
+}
+
+.arrow:hover {
+	opacity: 0.3;
+}
+
+.panel {
+	background: rgba(0,0,0,0.7);
+	min-height: 50px;
+}
+
+.half_opacity {
+	opacity: 0.5;
+}
+
+.half_opacity:hover {
+	transition: 0.1s;
+	opacity: 1;
+	background: 
+}
+
+.centered {
+	text-align: center;
+	margin: 0 auto; 
+}
+
+.landing_blurb {
+	background: rgba(200,0,0,0.4);
+	margin: 0 auto;
+	height: 400px;
+	width: 300px;
+}
+
+.login_register {
+	background: rgba(200,0,0,0.4);
+	margin: 0 auto;
+	height: 400px;
+	width: 300px;
+}
+
+.newsletter {
+	margin: 0 auto;
+	width: 300px;
+}
+
+/*Header Styles*/
+
+.header_gravitar {
+	height: 35px;
+	width: 35px;
+	display: inline-block;
+	margin: -5px;
+	border-radius: 50%;
+	border: 2px solid rgba(100,100,100,0.5)
+}
+.header_gravitar:hover {
+	transition: 0.1s;
+	opacity: 0.8;
+}
+
+.header {
+	position: absolute;
+	width: 100%;
+	top: 0;
+	height: 50px;
+	background: rgba(30,30,30,1);
+}
+
+.header-fix {
+	height: 70px;
+}
+
+.navbar {
+	position: relative;
+	top: 0;
+	height: 50px;
+	float: right;
+}
+
+.header_wrap {
+	position: fixed;
+	width: 100%;
+	height: 50px;
+	top: 0px;
+	left: 0px;
+	z-index: 1000;
+	background: rgba(100,210,200,1);
+}
+
+.header ul {
+	float: right;
+}
+
+.nav {
+	display: inline-block;
+	float: right;
+	position: relative;
+	padding: 10px 0px;
+}
+
+.navlinks, .logo h2, .login_out {
+	line-height: 30px;
+	font-size: 20px;
+}
+
+.logo {
+	display: inline-block;
+	position: relative;
+	padding: 10px;
+	color: rgba(100,210,200,1);
+}
+.logo:hover {
+	color: white;
+}
+
+.navlinks a:hover{
+	color: white;
+}
+
+.nav li, .nav li a {
+	display: inline-block;
+	float: left;
+	margin: 0px 5px;
+	position: relative;
+	/*color: rgba(10,180,170,1);*/
+	color: rgba(120,122,118,1);
+}
+.social { height: 32px; width: 32px;}
+
+.twit { background: url('/media/twitterlogoG.png');}
+.fb { background: url('/media/fblogog.png'); }
+.gith { background: url('/media/githubg.png'); }
+
+.twit:hover { background: url('/media/twitterlogow.png');}
+.fb:hover { background: url('/media/fblogow.png'); }
+.gith:hover { background: url('/media/githubw.png'); }
+
+
+
+/*Wrapper/Container Styles*/
+
+.flash {
+	background: rgba(100,100,100,0.7);
+	color: white;
+}
+
+.page_wrap {
+	padding-top: 70px;
+	min-height: 100%;
+	position: relative;
+	/*background: rgba(0,0,100,0.2);*/
+}
+
+.container {
+	margin: 0 auto;
+	width: 900px;
+	position: relative;
+}
+
+.content {
+	margin-bottom: 10px;
+	margin-top: 200px;
+}
+
+.left_half, .right_half {
+	display: inline-block;
+	position: absolute;
+	width: 50%;
+}
+
+.left_half { left: 0; }
+.right_half { right: 0; }
+
+/*form styles*/
+
+hr {
+	border:1px solid rgba(200,200,200,1);
+	margin: 5px 10px
+}
+
+.center_form h2 {
+	text-align: center;
+}
+
+.center_form {
+	padding: 20px;
+	margin: 0 auto;
+	width: 340px;
+	background: rgba(0,0,0,0.8);
+}
+
+form div input{
+	border: 2px solid rgba(100,210,200,1);
+	line-height: 20px;
+	display: inline-block;
+}
+
+form div label { 
+display: inline-block;}
+
+/*Footer Styles*/
+
+.footer h4 {
+	line-height: 50px;
+	color: rgba(100,210,200,1);
+}
+
+.footer_fix {
+	height: 100px;
+}
+.footer {
+	position: absolute;
+	height: 50px;
+	width: 100%;
+	/*background: rgba(0,0,0,0.8);*/
+	bottom: 0px;
+}
+
+.footer hr {
+	width: 960px;
+	margin: auto;
+	border: 1px solid rgba(100,210,200,1);
+}
+
+
+
+.stick-right {
+ position: fixed;
+ right: 0px;
+}
+
+.stick-left {
+	position: fixed;
+	left: 0px;
+}
+
+/*  profile styles  */
+
+.profile_panel {
+	background-color: rgba(0,0,0,0.9);
+	position: relative;
+}
+
+.full_profile {
+	display: none;
+	overflow: hidden;
+}
+
+.profile_gravitar {
+	vertical-align: top;
+	height: 80px;
+	width: 80px;
+	display: inline-block;
+	margin: 20px;
+	border-radius: 50%;
+	border: 5px solid rgba(100,210,200,1)
+}
+
+.quick_bio {
+	vertical-align: top;
+	display: inline-block;
+	width: 80%;
+	margin-top: 20px;
+}
+
+.pro {
+	color: rgba(255,100,0,1);
+}
+
+/*  sessions styles  */
+
+
+
+
+.sessions_conatiner {
+	/*background-color: rgba(0,0,0,0.75);*/
+}
+
+.session_panel {
+	background-color: rgba(0,0,0,0.7);
+	margin: 10px;	
+	overflow: hidden;
+	padding: 20px;
+	position: relative;
+}
+
+.full_session {
+	display: none;
+	overflow: hidden;
+	height: 480px;
+}
+
+.session_data {
+	padding-top: 20px;
+}
+
+.map_holder {
+	width: 400px;
+	height: 300px;
+	background: rgba(200,0,0,0.5);
+	float: left;
+	margin: 10px;
+	position: relative;
+	/*overflow: hidden;*/
+}
+
+.map_img {
+	position: absolute;
+}
+
+.marker_on, .marker_off {
+	border-radius: 50%;
+	position: relative;
+	width: 4px;
+	height: 4px;
+	top: 20px
+	left: 100px;
+	float: right;
+}
+
+.marker_on { background: rgba(140,255,240,0.6); }
+.marker_on { background: rgba(255,140,60,0.6); }
+
+.waves_holder {
+	width: 400px;
+	height: 300px;
+	float: left;
+	margin: 10px;
+	overflow-y: scroll;
+}
+
+.wave_detail {
+	height: 20px;
+	padding: 10px;
+	background: rgba(80,80,80,1);
+	margin: 0px 5px 5px 5px;
+}
+
+
+.session_panel .title {
+	color: rgba(255,100,0,1);
+	margin-bottom: 5px;
+}
+
+.session_panel .date {
+	color: rgba(100,210,200,1);
+}
+
+/*  scroll bar shiz  */
+
+::-webkit-scrollbar {
+		width: 15px; }
+	::-webkit-scrollbar-track {
+		background-color: rgba(0,0,0,0.5); }
+	::-webkit-scrollbar-thumb {
+		background-color: rgba(100,210,200,0.4);}
+	::-webkit-scrollbar-thumb:hover {
+		background-color: rgba(100,210,200,0.5);}
+	::-webkit-scrollbar-thumb:active {
+		background-color: rgba(100,210,200,0.7);}
