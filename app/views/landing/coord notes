@@ -1,0 +1,102 @@
+y (bigger number = north), x (bigger number = west)
+
+a = [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+a.each {|p| puts p* 0.00438}
+
+
+x = number of points
+
+(10 / x) = point increments
+
+new_array = [(]1..x].map { |n| n * (10 / x) }
+
+new_array.each squared = [1,4,9 equivalents]
+
+
+
+South Fistral 2 {
+	
+	Entry : 50.414753,-5.102473,
+
+	SZBoundary : 50.413837,-5.105597
+
+	EndBoundary : 50.415471,-5.102851
+
+	SZ/End differences : -0.001634, -0.00438 (0.005 diag)
+
+
+
+	0.001634
+	0.006536
+	0.014706
+	0.026144
+	0.04085
+	0.058824
+	0.080066
+	0.104576
+	0.132354
+	0.1634
+
+
+	0.00438
+	0.01752
+	0.03942
+	0.07008
+	0.1095
+	0.15768
+	0.21462
+	0.28032
+	0.35478
+	0.438
+
+}
+
+North Fistral 1 {
+
+	entry: 50.418978,-5.099417,
+
+	surf_zone_bound: 50.420065,-5.101027,
+
+	end_boundary: 50.417317,-5.101531
+	
+}
+
+Crantock 3 {
+	
+	Entry : 50.408791,-5.120897,
+
+	SZBoundary : 50.4097,-5.124577,
+
+	EndBoundary : 50.407335,-5.124448
+
+}
+
+Watergate 4 {
+	
+	Entry : 50.444962,-5.044529 ,
+
+	SZBoundary : 50.445494,-5.04764 ,
+
+	EndBoundary : 50.443957,-5.04616
+
+}
+
+Towan 5 {
+	
+	Entry : 50.418301,-5.074192 ,
+
+	SZBoundary : 50.419983,-5.073892,
+
+	EndBoundary : 50.418711,-5.075589
+
+}
+
+Tolcarne 6 {
+
+	Entry : 50.41582,-5.084858,
+
+	SZBoundary : 50.416954,-5.082809,
+
+	EndBoundary : 50.416448,-5.085009
+	
+}

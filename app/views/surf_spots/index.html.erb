@@ -1,0 +1,22 @@
+<div class="container">
+
+	<% @spots.each do |spot| %>
+
+
+	<div class="spot_panel" data-session="<%= spot.id %>">
+
+				<div class="session_summary">
+
+					<img class="arrow" src="/images/down_arrow.png">
+					<img class="arrow" src="/images/up_arrow.png" style="display: none;">
+
+					<h3 class="title"><%= spot.location %></h3>
+					<p>Surf report summary </p>
+				</div>
+				<div class="full_spot">
+				</div>
+	</div>
+
+	<% end %>
+
+</div>

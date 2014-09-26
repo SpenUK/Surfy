@@ -2,7 +2,7 @@
 
 	<div class="panel" id="bot_button" style="text-align: center; margin: 20px 250px; background: rgba(100,255,100,0.6);">
 		<p id="starty">Start Bot</p>
-		<p style="display: none;">Stop Bot</p>
+		<p id="stoppy" style="display: none;">Stop Bot</p>
 	</div>
 
 	<div class="panel " style="text-align: center;">
@@ -10,14 +10,15 @@
 		<% all_user_ids = [] %>
 		<% User.all.each do |user| %>
 			<p id="user<%=user.id%>"><%=user.full_name%></p>
-		<% all_user_ids << user.id %>
+			<% all_user_ids << user.id %>
 
 		<% end %>
 
-		<%= all_user_ids %>
+		<% all_spots = [] %>
+		<% SurfSpot.all.each do |spot| %>
+			<% all_spots << spot.id %>
 
-
-
+		<% end %>
 
 	</div>
 
@@ -27,12 +28,21 @@
 
 	var all_users = <%= all_user_ids %>;
 
-	function RandomUser(){
-		var target_user_id = all_users[Math.floor(Math.random() * all_users.length)];
-		var target_user_selector = '#user'+  target_user_id;
+	var scriptInterval = false;
+
+	function randomSpotDetails(){
+
+		var spot_id = all_spots[Math.floor(Math.random() * all_spots.length)];
+
+		
 
 
-		$(target_user_selector).css('color','rgba(255,140,60,1)');
+
+
+
+
+		
+		return { id: spot_id, entry: spot_id};
 	}
 
 	function startSession(userID){
@@ -63,39 +73,51 @@
 		}, sessionStart);
 	}
 
-	$('#bot_button').on("click", function(){
-		$(this).children("p").toggle();
+	function startBot(){
+
+		scriptInterval = setInterval(function(){
+
+			var usersSurfing =[];
+			var usersNotSurfing = [];
+
+			for (var i = all_users.length - 1; i >= 0; i--) {
+				n = Math.random();
+
+				if (n > 0.7) {
+					usersSurfing.push(all_users[i]);
+				};
+			};
+
+			jQuery.grep(all_users, function(el) {
+	    	if (jQuery.inArray(el, usersSurfing) == -1) usersNotSurfing.push(el);
+			});
+
+			console.log('surfing this hour ' + usersSurfing);
+			console.log('not surfing ' + usersNotSurfing);
+
+			for (var i = usersSurfing.length - 1; i >= 0; i--) {
+				startSession(usersSurfing[i]);
+
+			};
+		}, 60000);
+	}
+
+	function stopBot(){
+		if (scriptInterval){
+			clearInterval(scriptInterval);
+		}
+	}
+
+	$('#starty').on("click", function(){
+		$(this).parent().children("p").toggle();	
+			startBot();
+
 	})
 
-$(document).ready(function(){
-
-	var scriptInterval = setInterval(function(){
-
-		var usersSurfing =[];
-		var usersNotSurfing = [];
-
-		for (var i = all_users.length - 1; i >= 0; i--) {
-			n = Math.random();
-
-			if (n > 0.7) {
-				usersSurfing.push(all_users[i]);
-			};
-		};
-
-		jQuery.grep(all_users, function(el) {
-    	if (jQuery.inArray(el, usersSurfing) == -1) usersNotSurfing.push(el);
-		});
-
-		console.log('surfing this hour ' + usersSurfing);
-		console.log('not surfing ' + usersNotSurfing);
-
-		for (var i = usersSurfing.length - 1; i >= 0; i--) {
-			startSession(usersSurfing[i]);
-
-		};
-	}, 60000);
-
-});
+	$('#stoppy').on("click", function(){
+		$(this).parent().children("p").toggle();
+			stopBot();
+	})
 
 
 </script>

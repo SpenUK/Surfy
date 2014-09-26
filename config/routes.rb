@@ -11,8 +11,11 @@ Surfy::Application.routes.draw do
 
   resources :profiles
   resources :surf_sessions
+  get 'surf_spots' => "surf_spots#index"
+  get 'surf_spots/:id' => "surf_spots#show"
 
   get 'landing' => "landing#index"
+
 
   post 'surf_sessions/update_sessions_in_display' => 'surf_sessions#update_sessions_in_display'
 

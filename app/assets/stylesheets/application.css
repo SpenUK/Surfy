@@ -104,7 +104,7 @@ ul { list-style: none; }
 }
 
 .header-fix {
-	height: 70px;
+	height: 1000px;
 }
 
 .navbar {
@@ -304,14 +304,36 @@ display: inline-block;}
 	color: rgba(255,100,0,1);
 }
 
-/*  sessions styles  */
+/* spot styles */
 
-
-
-
-.sessions_conatiner {
-	/*background-color: rgba(0,0,0,0.75);*/
+.spot_panel {
+	background-color: rgba(0,0,0,0.7);
+	margin: 10px;	
+	overflow: hidden;
+	padding: 20px;
+	position: relative;
 }
+
+.full_spot {
+	display: none;
+	overflow: hidden;
+	height: 480px;
+}
+
+.spot_data {
+	padding-top: 20px;
+}
+
+.spot_panel .title {
+	color: rgba(255,100,0,1);
+	margin-bottom: 5px;
+}
+
+.spot_panel .date {
+	color: rgba(100,210,200,1);
+}
+
+/*  sessions styles  */
 
 .session_panel {
 	background-color: rgba(0,0,0,0.7);
@@ -365,12 +387,16 @@ display: inline-block;}
 	margin: 10px;
 	overflow-y: scroll;
 }
-
 .wave_detail {
 	height: 20px;
 	padding: 10px;
 	background: rgba(80,80,80,1);
 	margin: 0px 5px 5px 5px;
+}
+
+.wave_chart {
+	margin-top: 350px;
+	clear: both;
 }
 
 
